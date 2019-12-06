@@ -1,0 +1,55 @@
+.create-resume-form {
+    width: 30rem;
+    margin: 2rem auto;
+    max-width: 80%;
+}
+
+.create-resume-form h1 {
+    margin-bottom: 1em;
+}
+
+.create-resume-form .form-control label,
+.create-resume-form .form-control input {
+    display: block;
+    width: 100%;
+}
+
+.create-resume-form .form-control input {
+    font: inherit;
+    padding: 0.1rem 0.25rem;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+.create-resume-form .form-control input:focus {
+    outline: none;
+    border-bottom-color: #ff2058;
+}
+
+.create-resume-form__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.create-resume-form  button {
+    font: inherit;
+    background: #ff2058;
+    padding: 0.5rem 2rem;
+    color: white;
+    border: 1px solid #ff2058;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-resume-form button:hover,
+.create-resume-form button:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}
+
+.create-resume-form button:focus {
+    outline: none;
+}
