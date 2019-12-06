@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/app.css';
 
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
 import * as serviceWorker from './serviceWorker';
 
 const App = props => {
   return (
-      <HashRouter>
+      <BrowserRouter>
         <Routes {...props} />
-      </HashRouter>
+      </BrowserRouter>
   );
 };
 
