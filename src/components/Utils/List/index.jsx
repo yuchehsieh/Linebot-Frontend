@@ -13,7 +13,7 @@ const List = props => {
                         <div className="left">
                             <span>{datum.location}</span>
                             <span>, </span>
-                            <span>{datum.requisition}</span>
+                            <span>{datum.category}</span>
                         </div>
                         <div>
                             5人應徵

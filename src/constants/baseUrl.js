@@ -1,0 +1,1 @@
+export const baseUrl = 'https://linebot-human-resource.firebaseio.com';

@@ -33,7 +33,7 @@
 .search-job-container__actions {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .tip-buttons__actions {
