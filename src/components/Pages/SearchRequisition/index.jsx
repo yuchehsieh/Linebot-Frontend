@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo, useEffect, useReducer} from 'react';
+import React, {useState, useRef, useMemo, useEffect, useReducer, useCallback} from 'react';
 import './style.css';
 
 import List from "../../Utils/List";
@@ -20,16 +20,14 @@ const requisitionReducer = (currentRequisition, action) => {
 };
 
 const locationTips = [
-    {title: '南港'},
-    {title: '內湖'},
-    {title: '信義'},
-    {title: '松山'},
-    {title: '大安'},
+    {title: 'nangang'},
+    {title: 'neihu'},
+    {title: 'xinyi'},
 ];
 const categoryTips = [
-    {title: '工程師'},
-    {title: '作業員'},
-    {title: '高薪家教'},
+    {title: 'engineer'},
+    {title: 'operator'},
+    {title: 'tutor'},
 ];
 
 const dummyRequisitionData = [
@@ -71,8 +69,8 @@ const dummyRequisitionData = [
 ];
 
 const dummyPostRequisitionData = JSON.stringify({
-    location: '信義區',
-    category: '前端工程師',
+    location: 'xinyi',
+    category: 'operator',
 });
 
 const SearchRequisition = (props) => {
@@ -85,14 +83,15 @@ const SearchRequisition = (props) => {
     const inputCategoryRef = useRef();
 
 
-    const fetchRequisitions = async () => {
+    const searchRequisitions = useCallback(() => {
         let queryString = '';
 
         if (filteredLocation.length > 0) queryString += `?orderBy="location"&equalTo="${filteredLocation}"`;
-        if (filteredCategory.length > 0) queryString += `?orderBy="category"&equalTo="${filteredCategory}"`;
+        // if (filteredCategory.length > 0) queryString += `?orderBy="category"&equalTo="${filteredCategory}"`;
 
-        sendRequest(`${baseUrl}/requisitions.json` + queryString, 'GET', null, 'FETCH_REQUISITIONS')
-    };
+        sendRequest(
+            `${baseUrl}/requisitions.json` + queryString, 'GET', null, 'FETCH_REQUISITIONS')
+    }, [sendRequest, filteredLocation, filteredCategory]);
 
     useEffect(() => {
         /**
@@ -122,9 +121,11 @@ const SearchRequisition = (props) => {
          * Retrieve data changed from httpState
          * **/
 
+
         if (isLoading || error || !data) return;
 
         if (reqIdentifier === 'FETCH_REQUISITIONS') {
+            console.log('sending SET action');
             let loadedData = [];
             for (let key in data) {
                 loadedData.push({
@@ -140,19 +141,21 @@ const SearchRequisition = (props) => {
 
     const locationToolbar = useMemo(() => {
         return locationTips.map(tip => (
-            <div className="button">
+            <div className="button"
+                 onClick={() => setFilteredLocation(tip.title)}>
                 {tip.title}
             </div>
         ))
-    }, [locationTips]);
+    }, [setFilteredLocation]);
 
     const categoryToolbar = useMemo(() => {
         return categoryTips.map(tip => (
-            <div className="button">
+            <div className="button"
+                 onClick={() => setFilteredCategory(tip.title)}>
                 {tip.title}
             </div>
         ))
-    }, [categoryTips]);
+    }, [setFilteredCategory]);
 
     const categoryList = useMemo(() => <List listData={requisitions}/>, [requisitions]);
 
@@ -169,6 +172,8 @@ const SearchRequisition = (props) => {
         console.log(responseData);
     };
 
+    console.log(filteredLocation);
+
     return (
         <div className="search-job-container">
 
@@ -177,8 +182,10 @@ const SearchRequisition = (props) => {
             <div className="search-input">
                 <label>依地點</label>
                 <input placeholder="新北, 信義, 松山...." type="text"
-                       value={filteredLocation} onChange={e => setFilteredLocation(e.target.value)}
-                       ref={inputLocationRef}/>
+                       value={filteredLocation}
+                       onChange={e => setFilteredLocation(e.target.value)}
+                       ref={inputLocationRef}
+                />
                 <div className="tip-buttons__actions">
                     {locationToolbar}
                 </div>
@@ -187,7 +194,8 @@ const SearchRequisition = (props) => {
             <div className="search-input">
                 <label>依職缺</label>
                 <input placeholder="軟體工程師, 家教, 網路管理員...." type="text"
-                       value={filteredCategory} onChange={e => setFilteredCategory(e.target.value)}
+                       value={filteredCategory}
+                       onChange={e => setFilteredCategory(e.target.value)}
                        ref={inputCategoryRef}/>
                 <div className="tip-buttons__actions">
                     {categoryToolbar}
@@ -195,7 +203,7 @@ const SearchRequisition = (props) => {
             </div>
 
             <div className="search-job-container__actions">
-                <button type="submit" onClick={testPostRequisition}>Go!</button>
+                <button type="submit" onClick={searchRequisitions}>Go!</button>
                 {isLoading && <LoadingIndicator/>}
             </div>
 

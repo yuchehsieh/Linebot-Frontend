@@ -50,8 +50,8 @@
     background: blanchedalmond;
     min-width: 3em;
     text-align: center;
+    cursor: pointer;
 }
-
 
 .search-job-container button {
     font: inherit;

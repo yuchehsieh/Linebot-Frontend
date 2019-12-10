@@ -15,9 +15,9 @@ const List = props => {
                             <span>, </span>
                             <span>{datum.category}</span>
                         </div>
-                        <div>
-                            5人應徵
-                        </div>
+                        {/*<div>*/}
+                        {/*    5人應徵*/}
+                        {/*</div>*/}
                     </li>
                 ))}
             </ul>
