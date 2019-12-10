@@ -1,0 +1,78 @@
+.search-job-container {
+    width: 30rem;
+    margin: 2rem auto;
+    max-width: 80%;
+}
+
+.search-job-container h1 {
+    margin-bottom: 0.8em;
+}
+
+.search-input {
+    display: flex;
+    margin: 0.2em 0;
+}
+
+.search-input label {
+    margin-bottom: 0.3em;
+}
+
+.search-input input {
+    font: inherit;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.15rem 0.25rem;
+    height: 2.5em;
+}
+
+.search-input input:focus {
+    outline: none;
+    border-color: #ff2058;
+}
+
+.search-job-container__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.tip-buttons__actions {
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.tip-buttons__actions .button {
+    padding: 0.15em 0.3em;
+    border: 0.5px solid gray;
+    margin: 0.4em 0.2em 0.1em 0;
+    border-radius: 15px;
+    font-size: 0.9em;
+    background: blanchedalmond;
+    min-width: 3em;
+    text-align: center;
+}
+
+
+.search-job-container button {
+    font: inherit;
+    background: #ff2058;
+    padding: 0.5rem 2rem;
+    color: white;
+    border: 1px solid #ff2058;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-job-container button:hover,
+.search-job-container button:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.26);
+}
+
+.search-job-container button:focus {
+    outline: none;
+}
+
+.search-job-container h2 {
+    border-bottom: 3px solid #ccc;
+}
