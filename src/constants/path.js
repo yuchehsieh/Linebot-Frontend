@@ -1,4 +1,5 @@
 export default {
     createResume: '/create-resume',
-    searchJob: '/search-job',
+    searchRequisition: '/search-requisition',
+    requisitionDetail: '/requisition-detail',
 };
